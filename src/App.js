@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{Component} from 'react';
+import HOC from './hoc/HOC';
+import Form from './Component/Form';
+import Message from './Component/Message';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor()
+  {
+    super();
+    this.state={isFormValid:false}
+  }
+  formMessage=(valid=false)=>{
+    
+    this.setState({isFormValid:valid});
+  }
+  render()
+  {
+    return (
+      <div>
+        <h3 className="center">A simple form</h3>
+        <HOC>
+          <Form formMessage={this.formMessage}></Form>
+          <Message formMessage={this.state.isFormValid}></Message>
+        </HOC>
+      </div>
+    )
+  }
+      
+  
 }
 
 export default App;
